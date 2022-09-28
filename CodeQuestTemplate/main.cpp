@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -26,6 +27,24 @@ vector<string> getInput() {
     return lines;
 }
 
+void sort(vector<string> &v, int start, int end) {
+    int pivot = end;
+    int j = start;
+    for (int i = start; i < end; ++i) {
+        if (v[i] < v[pivot]) {
+            swap(v[i], v[j]);
+            ++j;
+        }
+    }
+    swap(v[j], v[pivot]);
+
+    if (start < end) {
+        int p = j;
+        sort(v, start, p - 1);
+        sort(v, p + 1, end);
+    }
+}
+
 vector<string> seperateString(string delimiter, string str)
 {
     vector<string> lines;
@@ -44,5 +63,5 @@ vector<string> seperateString(string delimiter, string str)
 
 int main()
 {
-    vector<string> input = getInput();
+
 }
