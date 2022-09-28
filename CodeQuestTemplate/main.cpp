@@ -26,6 +26,20 @@ vector<string> getInput() {
     return lines;
 }
 
+vector<string> seperateString(const char* delimiter, char str[])
+{
+    vector<string> lines;
+    char* token = strtok(str, delimiter);
+
+    while (token != NULL)
+    {
+        lines.push_back(token);
+        token = strtok(NULL, delimiter);
+    }
+
+    return lines;
+}
+
 int main()
 {
     vector<string> input = getInput();
