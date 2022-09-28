@@ -26,25 +26,23 @@ vector<string> getInput() {
     return lines;
 }
 
-vector<string> seperateString(const char* delimiter, char str[])
+vector<string> seperateString(string delimiter, string str)
 {
     vector<string> lines;
-    char* token = strtok(str, delimiter);
+    size_t pos = 0;
+    std::string token;
 
-    while (token != NULL)
-    {
+    while ((pos = str.find(delimiter)) != std::string::npos) {
+        token = str.substr(0, pos);
         lines.push_back(token);
-        token = strtok(NULL, delimiter);
+        str.erase(0, pos + delimiter.length());
     }
-
+    
+    lines.push_back(str);
     return lines;
 }
 
 int main()
 {
     vector<string> input = getInput();
-
-    for (int i = 0; i < input.size(); i++) {
-        cout << input[i] << endl;
-    }
 }
